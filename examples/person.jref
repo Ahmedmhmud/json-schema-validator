@@ -1,0 +1,4 @@
+{
+  "name": "Jason",
+  "address": { "$ref": "address.jref" }
+}
