@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.jref": "json"
+  },
+  "json.validate.enable": true
+}
