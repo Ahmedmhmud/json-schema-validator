@@ -1,6 +1,8 @@
-import { type } from "./keywords/type.js";
+const { type } = require("./keywords/type.js");
+const { properties } = require("./keywords/properties.js");
+const { required } = require("./keywords/required.js");
 
-export function validate(schema, instance){
+function validate(schema, instance){
     for(const [keyword, value] of Object.entries(schema)){
         if(!check(keyword, value, instance, schema)){
             return false;
@@ -10,11 +12,17 @@ export function validate(schema, instance){
     return true;
 };
 
-function check(keyword, keywordValue, instance){
+module.exports = { validate };
+
+function check(keyword, keywordValue, instance, schema){
     switch(keyword){
         case "type":
             return type(keywordValue, instance);
+        case "properties":
+            return properties(keywordValue, instance);
+        case "required":
+            return required(keywordValue, instance);
         default:
-            return false;
+            return true;
     }
 };

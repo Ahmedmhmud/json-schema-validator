@@ -1,4 +1,4 @@
-export function getType(instance){
+function getType(instance){
     if(instance === null){
         return "null";
     }else if(Array.isArray(instance)){
@@ -15,3 +15,5 @@ export function getType(instance){
 
     return undefined;
 }
+
+module.exports = { getType };

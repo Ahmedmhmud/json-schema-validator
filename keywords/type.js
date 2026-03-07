@@ -1,6 +1,6 @@
-import { getType } from '../utils/getType.js';
+const { getType } = require("../utils/getType.js");
 
-export function type(schema, instance){
+function type(schema, instance){
     const typeOfInstance = getType(instance);
     if (typeof schema === "string") {
     return (typeOfInstance === schema) || (schema === "number" && typeOfInstance === "integer");
@@ -10,3 +10,5 @@ export function type(schema, instance){
     return (typeOfInstance === t) || (t === "number" && typeOfInstance === "integer");
   });
 }
+
+module.exports = { type };
