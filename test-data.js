@@ -45,8 +45,54 @@ const invalidInstance = {
     }
 };
 
+// Root-level internal $ref target.
+const refSchemaRoot = {
+    "$ref": "#/defs/name",
+    "defs": {
+        "name": { "type": "string" }
+    }
+};
+
+const refRootValidInstance = "ok";
+const refRootInvalidInstance = 42;
+
+// Nested $ref target that points back to root definitions.
+const refSchemaNested = {
+    "type": "object",
+    "properties": {
+        "personName": { "$ref": "#/defs/name" }
+    },
+    "required": ["personName"],
+    "defs": {
+        "name": { "type": "string" }
+    }
+};
+
+const refNestedValidInstance = { personName: "Ahmed" };
+const refNestedInvalidInstance = { personName: 123 };
+
+const refSchemaChained = {
+    "$ref": "#/defs/person",
+    "defs": {
+        "person": { "$ref": "#/defs/name" },
+        "name": { "type": "string" }
+    }
+};
+
+const refChainedValidInstance = "John";
+const refChainedInvalidInstance = 456;
+
 module.exports = {
     exampleSchema,
     validInstance,
-    invalidInstance
+    invalidInstance,
+    refSchemaRoot,
+    refRootValidInstance,
+    refRootInvalidInstance,
+    refSchemaNested,
+    refNestedValidInstance,
+    refNestedInvalidInstance,
+    refSchemaChained,
+    refChainedValidInstance,
+    refChainedInvalidInstance
 }
